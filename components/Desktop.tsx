@@ -257,7 +257,7 @@ Starting Finder ......
 
         {/* Greeting watermark */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-black/35 text-[11px] font-mono pointer-events-none text-center">
-          Welcome to ShaianOS — double-click anything · press Terminal for secrets
+          Welcome to ShaianOS — double-click anything · inspiration from PostHog
         </div>
 
         {/* Windows */}
