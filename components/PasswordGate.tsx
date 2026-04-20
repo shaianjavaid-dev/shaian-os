@@ -150,39 +150,11 @@ export default function PasswordGate({
       className="fixed inset-0 bg-black z-[99999] flex items-center justify-center overflow-hidden"
       style={{ cursor: "default" }}
     >
-      {/* CRT scanlines */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[100000]"
-        style={{
-          background:
-            "repeating-linear-gradient(180deg, rgba(0,255,65,0.03) 0 1px, transparent 1px 3px)",
-          mixBlendMode: "screen",
-        }}
-      />
-      {/* CRT vignette */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[100000]"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%)",
-        }}
-      />
-      {/* Flicker */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[100000] animate-pulse opacity-[0.015]"
-        style={{ background: "#00ff41" }}
-      />
-
-      <div className="w-full max-w-[600px] px-6 font-mono text-[#00ff41] text-[13px] leading-relaxed">
+      <div className="w-full max-w-[600px] px-6 font-mono text-white text-[13px] leading-relaxed">
         {/* Boot lines */}
         <div className="mb-2 select-none">
           {BOOT_LINES.slice(0, bootIndex).map((line, i) => (
-            <div
-              key={i}
-              style={{
-                textShadow: "0 0 8px rgba(0,255,65,0.6)",
-              }}
-            >
+            <div key={i}>
               {line || "\u00A0"}
             </div>
           ))}
@@ -192,24 +164,12 @@ export default function PasswordGate({
         {!booting && (
           <form onSubmit={handleSubmit} className="select-none">
             {error && (
-              <div
-                className="mb-2"
-                style={{
-                  color: locked ? "#ff3333" : "#ff6b33",
-                  textShadow: locked
-                    ? "0 0 10px rgba(255,51,51,0.5)"
-                    : "0 0 8px rgba(255,107,51,0.5)",
-                }}
-              >
+              <div className="mb-2 text-red-400">
                 {error}
               </div>
             )}
             <div className="flex items-center gap-2">
-              <span
-                style={{ textShadow: "0 0 8px rgba(0,255,65,0.6)" }}
-              >
-                password:
-              </span>
+              <span>password:</span>
               <input
                 ref={inputRef}
                 type="password"
@@ -220,15 +180,9 @@ export default function PasswordGate({
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                className="flex-1 bg-transparent border-none outline-none text-[#00ff41] font-mono text-[13px] caret-[#00ff41]"
-                style={{
-                  textShadow: "0 0 8px rgba(0,255,65,0.6)",
-                  caretShape: "block",
-                }}
+                className="flex-1 bg-transparent border-none outline-none text-white font-mono text-[13px] caret-white"
               />
-              <span className="blink" style={{ textShadow: "0 0 8px rgba(0,255,65,0.6)" }}>
-                ▌
-              </span>
+              <span className="blink">▌</span>
             </div>
           </form>
         )}
