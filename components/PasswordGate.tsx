@@ -20,19 +20,15 @@ const MAX_ATTEMPTS = 5;
 const LOCKOUT_MS = 60_000;
 
 const BOOT_LINES = [
-  "ShaianOS Security Module v2.1",
-  "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-  "Initializing encrypted filesystem...... OK",
-  "Loading security protocols............. OK",
-  "Verifying kernel integrity............. OK",
-  "Mounting /secure/auth.................. OK",
-  "Hardware ID: A7-3F-9B-E2-01-D4",
+  "POST ................ OK",
+  "Memory (640K)  ....... OK",
+  "Loading kernel ....... OK",
+  "Mounting /home/shaian  ...",
+  "Initializing Loom/    ...",
+  "Initializing Companies/ ...",
+  "Starting Finder ......",
   "",
-  "⚠  ACCESS RESTRICTED",
-  "   This system is protected. Unauthorized",
-  "   access attempts are logged and reported.",
-  "",
-  "AUTHENTICATE TO CONTINUE:",
+  "Authenticate to continue:",
 ];
 
 export default function PasswordGate({
