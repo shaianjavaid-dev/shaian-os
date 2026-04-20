@@ -150,7 +150,7 @@ export default function PasswordGate({
       className="fixed inset-0 bg-black z-[99999] flex items-center justify-center overflow-hidden"
       style={{ cursor: "default" }}
     >
-      <div className="w-full max-w-[600px] px-6 font-mono text-white text-[13px] leading-relaxed">
+      <div className="w-full max-w-[600px] px-6 font-mono text-[#00ff41] text-[13px] leading-relaxed">
         {/* Boot lines */}
         <div className="mb-2 select-none">
           {BOOT_LINES.slice(0, bootIndex).map((line, i) => (
@@ -180,7 +180,7 @@ export default function PasswordGate({
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                className="flex-1 bg-transparent border-none outline-none text-white font-mono text-[13px] caret-white"
+                className="flex-1 bg-transparent border-none outline-none text-[#00ff41] font-mono text-[13px] caret-[#00ff41]"
               />
               <span className="blink">▌</span>
             </div>
