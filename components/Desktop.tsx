@@ -210,7 +210,7 @@ Starting Finder ......
               onOpen={() => openKind("contact")}
             />
             <DesktopIcon
-              label="Resume"
+              label="Technical Product Resume"
               icon={<DocIcon />}
               selected={selected === "resume"}
               onSelect={() => setSelected("resume")}

@@ -176,6 +176,7 @@ export default function PasswordGate({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={locked}
+                autoFocus
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"
@@ -183,6 +184,9 @@ export default function PasswordGate({
                 className="flex-1 bg-transparent border-none outline-none text-[#00ff41] font-mono text-[13px] caret-[#00ff41]"
               />
               <span className="blink">▌</span>
+            </div>
+            <div className="mt-3 text-[11px] text-[#00ff41]/50">
+              press enter to submit
             </div>
           </form>
         )}
