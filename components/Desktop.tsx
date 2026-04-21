@@ -177,87 +177,45 @@ Starting Finder ......
 
       {/* Desktop body */}
       <div className={`absolute inset-0 pt-8 ${booted ? "crt-on" : ""}`}>
-        {/* Left icon column */}
-        <div className="absolute top-8 left-2 flex flex-col gap-3 p-2">
-          <DesktopIcon
-            label="About Me.rtf"
-            icon={<DocIcon />}
-            selected={selected === "about"}
-            onSelect={() => setSelected("about")}
-            onOpen={() => openKind("about")}
-          />
-          <DesktopIcon
-            label="Resume.pdf"
-            icon={<DocIcon />}
-            selected={selected === "resume"}
-            onSelect={() => setSelected("resume")}
-            onOpen={() => openKind("resume")}
-          />
-          <DesktopIcon
-            label="Experience"
-            icon={<FolderIcon tint="#e7e2d0" />}
-            selected={selected === "experience"}
-            onSelect={() => setSelected("experience")}
-            onOpen={() => openKind("experience")}
-          />
-          <DesktopIcon
-            label="Companies I started"
-            icon={<FolderIcon />}
-            selected={selected === "companies"}
-            onSelect={() => setSelected("companies")}
-            onOpen={() => openKind("companies")}
-          />
-          <DesktopIcon
-            label="Inbox.app"
-            icon={<MailIcon />}
-            selected={selected === "inbox"}
-            onSelect={() => setSelected("inbox")}
-            onOpen={() => openKind("inbox")}
-          />
-        </div>
-
-        {/* Right icon column */}
-        <div className="absolute top-8 right-2 flex flex-col gap-3 p-2 items-center">
-          <DesktopIcon
-            label="Macintosh HD"
-            icon={<ComputerIcon />}
-            onOpen={() => openKind("about")}
-          />
-          <DesktopIcon
-            label="Twitter.app"
-            icon={<XIcon />}
-            onOpen={() => openKind("tweets")}
-          />
-          <DesktopIcon
-            label="loomhealth.ai"
-            icon={<AppIcon color="#ff7a1a" glyph="L" />}
-            onOpen={() => launchBrowser("https://www.loomhealth.ai", "Loom Health")}
-          />
-          <DesktopIcon
-            label="loombuilder"
-            icon={<AppIcon color="#3a7dff" glyph="B" />}
-            onOpen={() => launchBrowser("https://www.loombuilder.ai", "Loom Builder")}
-          />
-          <DesktopIcon
-            label="Terminal"
-            icon={<TerminalIcon />}
-            onOpen={() => openKind("terminal")}
-          />
-          <DesktopIcon
-            label="Contact"
-            icon={<MailIcon />}
-            onOpen={() => openKind("contact")}
-          />
-          <DesktopIcon
-            label={trashFull ? "Trash (full)" : "Trash"}
-            icon={<TrashIcon full={trashFull} />}
-            onOpen={() => { setTrashFull(false); openKind("trash"); }}
-          />
-        </div>
-
-        {/* Greeting watermark */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-black/35 text-[11px] font-mono pointer-events-none text-center">
-          Welcome to ShaianOS — double-click anything · inspiration from PostHog
+        {/* Center icons */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex gap-8">
+            <DesktopIcon
+              label="Companies I've started"
+              icon={<FolderIcon />}
+              selected={selected === "companies"}
+              onSelect={() => setSelected("companies")}
+              onOpen={() => openKind("companies")}
+            />
+            <DesktopIcon
+              label="Twitter.app"
+              icon={<XIcon />}
+              selected={selected === "tweets"}
+              onSelect={() => setSelected("tweets")}
+              onOpen={() => openKind("tweets")}
+            />
+            <DesktopIcon
+              label="Cool.Recently.Inbox"
+              icon={<MailIcon />}
+              selected={selected === "inbox"}
+              onSelect={() => setSelected("inbox")}
+              onOpen={() => openKind("inbox")}
+            />
+            <DesktopIcon
+              label="Contact"
+              icon={<MailIcon />}
+              selected={selected === "contact"}
+              onSelect={() => setSelected("contact")}
+              onOpen={() => openKind("contact")}
+            />
+            <DesktopIcon
+              label="Resume"
+              icon={<DocIcon />}
+              selected={selected === "resume"}
+              onSelect={() => setSelected("resume")}
+              onOpen={() => openKind("resume")}
+            />
+          </div>
         </div>
 
         {/* Windows */}
