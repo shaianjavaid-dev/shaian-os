@@ -7,6 +7,7 @@ import DesktopIcon from "./DesktopIcon";
 import {
   AppIcon,
   ComputerIcon,
+  ContactIcon,
   DocIcon,
   FolderIcon,
   GlobeIcon,
@@ -203,7 +204,7 @@ Starting Finder ......
             />
             <DesktopIcon
               label="Contact"
-              icon={<MailIcon />}
+              icon={<ContactIcon />}
               selected={selected === "contact"}
               onSelect={() => setSelected("contact")}
               onOpen={() => openKind("contact")}

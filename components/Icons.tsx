@@ -93,6 +93,17 @@ export const TrophyIcon = () => (
   </svg>
 );
 
+export const ContactIcon = () => (
+  <svg viewBox="0 0 48 48" className="w-12 h-12">
+    <rect x="6" y="4" width="36" height="40" rx="3" fill="#ffffff" stroke="#1a1a1a" strokeWidth="1.5" />
+    <circle cx="24" cy="18" r="7" fill="#e7e2d0" stroke="#1a1a1a" strokeWidth="1.5" />
+    <path d="M12 38 a12 10 0 0 1 24 0" fill="#e7e2d0" stroke="#1a1a1a" strokeWidth="1.5" />
+    <rect x="4" y="12" width="4" height="6" rx="1" fill="#3a7dff" stroke="#1a1a1a" strokeWidth="1" />
+    <rect x="4" y="24" width="4" height="6" rx="1" fill="#ff7a1a" stroke="#1a1a1a" strokeWidth="1" />
+    <rect x="4" y="36" width="4" height="6" rx="1" fill="#27c93f" stroke="#1a1a1a" strokeWidth="1" />
+  </svg>
+);
+
 export const GlobeIcon = () => (
   <svg viewBox="0 0 48 48" className="w-12 h-12">
     <circle cx="24" cy="24" r="18" fill="#bfe1ff" stroke="#1a1a1a" strokeWidth="1.5" />
