@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import Window from "./Window";
 import DesktopIcon from "./DesktopIcon";
+import Solitaire from "./Solitaire";
 import {
   AppIcon,
   ComputerIcon,
@@ -65,6 +66,7 @@ export default function Desktop() {
   const [selected, setSelected] = useState<string | null>(null);
   const [now, setNow] = useState(new Date());
   const [trashFull, setTrashFull] = useState(false);
+  const [solitaire, setSolitaire] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -218,6 +220,17 @@ Starting Finder ......
             />
           </div>
         </div>
+
+        {/* Easter egg */}
+        <button
+          onClick={() => setSolitaire(true)}
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] text-black/20 hover:text-black/50 font-mono transition-colors cursor-default z-[3000]"
+        >
+          ♠♥♦♣
+        </button>
+
+        {/* Solitaire overlay */}
+        {solitaire && <Solitaire onClose={() => setSolitaire(false)} />}
 
         {/* Windows */}
         <AnimatePresence>
