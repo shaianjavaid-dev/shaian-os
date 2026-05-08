@@ -11,8 +11,10 @@ async function sha256(msg: string): Promise<string> {
 }
 
 // Precomputed SHA-256 — plaintext never appears in bundle
-const EXPECTED_HASH =
-  "a63422b7dbe8e2b2c95ca16f223abdceeabd96f8d2c8b558e9e0ae6de1b4c8cc";
+const EXPECTED_HASHES = [
+  "a63422b7dbe8e2b2c95ca16f223abdceeabd96f8d2c8b558e9e0ae6de1b4c8cc",
+  "a250aaaf106ed8996bc509d98c668188791705ee7a110ed9dd24ba5a2a61cb7d",
+];
 
 const SESSION_KEY = "__sos_auth";
 const LOCKOUT_KEY = "__sos_lockout";
@@ -49,7 +51,7 @@ export default function PasswordGate({
   // Check session on mount
   useEffect(() => {
     const s = sessionStorage.getItem(SESSION_KEY);
-    if (s === EXPECTED_HASH) {
+    if (s && EXPECTED_HASHES.includes(s)) {
       setAuthed(true);
     }
     setChecking(false);
@@ -113,7 +115,7 @@ export default function PasswordGate({
 
     const hash = await sha256(input.trim());
 
-    if (hash === EXPECTED_HASH) {
+    if (EXPECTED_HASHES.includes(hash)) {
       sessionStorage.setItem(SESSION_KEY, hash);
       setAuthed(true);
       setError("");
