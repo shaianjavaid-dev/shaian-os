@@ -64,13 +64,12 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
 
         <p className="mt-9">elsewhere:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
-          <li>lifelong swimmer — swam the escape from alcatraz recently.</li>
+          <li>lifelong swimmer — just swam from alcatraz recently.</li>
           <li>
             currently hacking on a jetson orin nano — a self-contained edge node that counts cars on
-            the bay bridge in real time. mostly a project to learn how to manage power draw via solar
-            and thermal throttling with AI.
+            the bay bridge in real time. mostly a project to manage power draw and thermal throttling
+            with AI.
           </li>
-          <li>i read a lot and have strong opinions about espresso.</li>
           <li>x is a good time: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
         </ul>
