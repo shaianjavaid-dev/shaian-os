@@ -3,11 +3,11 @@ export const PROFILE = {
   pronounce: "Shy-on",
   tagline: "Shipping AI products and musing about living on a farm.",
   location: "San Francisco, CA",
-  email: "shaianjavaid@gmail.com",
+  email: "ShaianJavaid@gmail.com",
   links: {
     x: "https://x.com/Shaian_javaid",
     linkedin: "https://www.linkedin.com/in/shaian-javaid",
-    email: "mailto:shaianjavaid@gmail.com",
+    email: "mailto:ShaianJavaid@gmail.com",
   },
 };
 
