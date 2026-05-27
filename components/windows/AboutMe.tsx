@@ -67,8 +67,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           <li>lifelong swimmer — swam the escape from alcatraz recently.</li>
           <li>
             currently hacking on a jetson orin nano — a self-contained edge node that counts cars on
-            the bay bridge in real time. mostly a fight to keep it running against power draw and thermal
-            throttling.
+            the bay bridge in real time. mostly a project to learn how to manage power draw via solar
+            and thermal throttling with AI.
           </li>
           <li>i read a lot — mostly about space these days — and have strong opinions about espresso.</li>
           <li>x is largely a distraction but i&apos;m there too: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
