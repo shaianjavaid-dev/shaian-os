@@ -67,6 +67,11 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p className="mt-9">elsewhere:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
           <li>lifelong swimmer — swam the escape from alcatraz recently.</li>
+          <li>
+            currently hacking on a jetson orin nano — a self-contained edge node that counts cars on
+            the bay bridge in real time. mostly a fight to keep it running against power draw and thermal
+            throttling.
+          </li>
           <li>i read a lot — mostly about space these days — and have strong opinions about espresso.</li>
           <li>x is largely a distraction but i&apos;m there too: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
