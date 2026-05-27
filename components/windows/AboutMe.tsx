@@ -41,9 +41,10 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             </p>
           </li>
           <li>
-            on the side, {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — vision
-            AI for ~10K energy-rebate applications a month. fully autonomous, bootstrapped, vaguely
-            embarrassing to explain at parties.
+            on the side, {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — AI that
+            fights fraud in grants handed out by the department of energy. born out of frustration with
+            medicaid fraud, it now sits between ~10K energy-rebate requests a month. fully autonomous and
+            bootstrapped.
           </li>
         </ul>
 
