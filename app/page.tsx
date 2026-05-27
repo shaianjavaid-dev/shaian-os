@@ -1,10 +1,10 @@
-import Desktop from "@/components/Desktop";
+import AboutPage from "@/components/AboutPage";
 import PasswordGate from "@/components/PasswordGate";
 
 export default function Home() {
   return (
     <PasswordGate>
-      <Desktop />
+      <AboutPage />
     </PasswordGate>
   );
 }
