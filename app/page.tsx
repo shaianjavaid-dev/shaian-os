@@ -1,10 +1,10 @@
-import TerminalOS from "@/components/TerminalOS";
+import Desktop from "@/components/Desktop";
 import PasswordGate from "@/components/PasswordGate";
 
 export default function Home() {
   return (
     <PasswordGate>
-      <TerminalOS />
+      <Desktop />
     </PasswordGate>
   );
 }
