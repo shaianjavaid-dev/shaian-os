@@ -42,9 +42,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           </li>
           <li>
             on the side, {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — AI that
-            fights fraud in grants handed out by the department of energy. born out of frustration with
-            medicaid fraud, it now sits between ~10K energy-rebate requests a month. fully autonomous and
-            bootstrapped.
+            fights fraud in grants handed out by the department of energy.
           </li>
         </ul>
 
