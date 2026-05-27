@@ -66,7 +66,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
 
         <p className="mt-9">elsewhere:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
-          <li>lifelong swimmer — swam the escape from alcatraz once.</li>
+          <li>lifelong swimmer — swam the escape from alcatraz recently.</li>
           <li>i read a lot and have strong opinions about espresso.</li>
           <li>x is largely a distraction but i&apos;m there too: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
