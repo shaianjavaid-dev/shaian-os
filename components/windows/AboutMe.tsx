@@ -71,7 +71,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             and thermal throttling with AI.
           </li>
           <li>i read a lot and have strong opinions about espresso.</li>
-          <li>x is largely a distraction but i&apos;m there too: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
+          <li>x is a good time: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
         </ul>
 
