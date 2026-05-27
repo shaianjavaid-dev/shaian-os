@@ -27,8 +27,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p>
           hey, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
-          francisco and spend most of my hours shipping AI products — and quietly musing about
-          living on a farm.
+          francisco and spend most of my hours shipping AI products.
         </p>
 
         <ul className="mt-7 list-disc space-y-5 pl-5 marker:text-[#e6e6e6]">
