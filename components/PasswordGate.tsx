@@ -17,130 +17,34 @@ const EXPECTED_HASHES = [
 ];
 
 const SESSION_KEY = "__sos_auth";
-const LOCKOUT_KEY = "__sos_lockout";
-const MAX_ATTEMPTS = 5;
-const LOCKOUT_MS = 60_000;
 
-const BOOT_LINES = [
-  "POST ................ OK",
-  "Memory (640K)  ....... OK",
-  "Loading kernel ....... OK",
-  "Mounting /home/shaian  ...",
-  "Initializing Loom/    ...",
-  "Initializing Companies/ ...",
-  "Starting Finder ......",
-  "",
-  "Authenticate to continue:",
-];
-
-export default function PasswordGate({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function PasswordGate({ children }: { children: React.ReactNode }) {
   const [authed, setAuthed] = useState(false);
   const [checking, setChecking] = useState(true);
   const [input, setInput] = useState("");
-  const [error, setError] = useState("");
-  const [attempts, setAttempts] = useState(0);
-  const [locked, setLocked] = useState(false);
-  const [bootIndex, setBoot] = useState(0);
-  const [booting, setBooting] = useState(true);
+  const [error, setError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Check session on mount
   useEffect(() => {
     const s = sessionStorage.getItem(SESSION_KEY);
-    if (s && EXPECTED_HASHES.includes(s)) {
-      setAuthed(true);
-    }
+    if (s && EXPECTED_HASHES.includes(s)) setAuthed(true);
     setChecking(false);
-
-    // Check lockout
-    const lockUntil = localStorage.getItem(LOCKOUT_KEY);
-    if (lockUntil && Date.now() < Number(lockUntil)) {
-      setLocked(true);
-      const remaining = Number(lockUntil) - Date.now();
-      setTimeout(() => {
-        setLocked(false);
-        localStorage.removeItem(LOCKOUT_KEY);
-      }, remaining);
-    }
   }, []);
 
-  // Boot text animation
   useEffect(() => {
-    if (authed || checking) return;
-    if (bootIndex < BOOT_LINES.length) {
-      const t = setTimeout(
-        () => setBoot((i) => i + 1),
-        BOOT_LINES[bootIndex] === "" ? 200 : 40 + Math.random() * 60
-      );
-      return () => clearTimeout(t);
-    } else {
-      const t = setTimeout(() => {
-        setBooting(false);
-        inputRef.current?.focus();
-      }, 300);
-      return () => clearTimeout(t);
-    }
-  }, [bootIndex, authed, checking]);
-
-  // Block dev tools shortcuts + right-click while locked
-  useEffect(() => {
-    if (authed) return;
-    const handler = (e: KeyboardEvent) => {
-      if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
-        (e.ctrlKey && e.key === "u") ||
-        (e.metaKey && e.altKey && ["I", "J", "C"].includes(e.key)) ||
-        (e.metaKey && e.key === "u")
-      ) {
-        e.preventDefault();
-      }
-    };
-    const ctxHandler = (e: MouseEvent) => e.preventDefault();
-    window.addEventListener("keydown", handler);
-    window.addEventListener("contextmenu", ctxHandler);
-    return () => {
-      window.removeEventListener("keydown", handler);
-      window.removeEventListener("contextmenu", ctxHandler);
-    };
-  }, [authed]);
+    if (!checking && !authed) inputRef.current?.focus();
+  }, [checking, authed]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (locked || !input.trim()) return;
-
+    if (!input.trim()) return;
     const hash = await sha256(input.trim());
-
     if (EXPECTED_HASHES.includes(hash)) {
       sessionStorage.setItem(SESSION_KEY, hash);
       setAuthed(true);
-      setError("");
     } else {
-      const next = attempts + 1;
-      setAttempts(next);
+      setError(true);
       setInput("");
-      if (next >= MAX_ATTEMPTS) {
-        setLocked(true);
-        const until = Date.now() + LOCKOUT_MS;
-        localStorage.setItem(LOCKOUT_KEY, String(until));
-        setError(
-          `Too many failed attempts. System locked for 60 seconds.`
-        );
-        setTimeout(() => {
-          setLocked(false);
-          setAttempts(0);
-          localStorage.removeItem(LOCKOUT_KEY);
-          setError("Enter password:");
-        }, LOCKOUT_MS);
-      } else {
-        setError(
-          `ACCESS DENIED — ${MAX_ATTEMPTS - next} attempt${MAX_ATTEMPTS - next === 1 ? "" : "s"} remaining`
-        );
-      }
     }
   }
 
@@ -148,51 +52,26 @@ export default function PasswordGate({
   if (authed) return <>{children}</>;
 
   return (
-    <div
-      className="fixed inset-0 bg-black z-[99999] flex items-center justify-center overflow-hidden"
-      style={{ cursor: "default" }}
-    >
-      <div className="w-full max-w-[600px] px-6 font-mono text-[#00ff41] text-[13px] leading-relaxed">
-        {/* Boot lines */}
-        <div className="mb-2 select-none">
-          {BOOT_LINES.slice(0, bootIndex).map((line, i) => (
-            <div key={i}>
-              {line || "\u00A0"}
-            </div>
-          ))}
-        </div>
-
-        {/* Input area */}
-        {!booting && (
-          <form onSubmit={handleSubmit} className="select-none">
-            {error && (
-              <div className="mb-2 text-red-400">
-                {error}
-              </div>
-            )}
-            <div className="flex items-center gap-2">
-              <span>password:</span>
-              <input
-                ref={inputRef}
-                type="password"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                disabled={locked}
-                autoFocus
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="off"
-                spellCheck={false}
-                className="flex-1 bg-transparent border-none outline-none text-[#00ff41] font-mono text-[13px] caret-[#00ff41]"
-              />
-              <span className="blink">▌</span>
-            </div>
-            <div className="mt-3 text-[11px] text-[#00ff41]/50">
-              press enter to submit
-            </div>
-          </form>
-        )}
-      </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-black font-mono text-[13px] text-[#e6e6e6]">
+      <form onSubmit={handleSubmit} className="w-full max-w-[280px] px-6">
+        <input
+          ref={inputRef}
+          type="password"
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setError(false);
+          }}
+          autoFocus
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          placeholder="password"
+          className="w-full border-b border-white/25 bg-transparent pb-1 text-center outline-none placeholder:text-white/30 focus:border-white/60"
+        />
+        {error && <p className="mt-3 text-center text-[12px] text-red-400/80">incorrect</p>}
+      </form>
     </div>
   );
 }
