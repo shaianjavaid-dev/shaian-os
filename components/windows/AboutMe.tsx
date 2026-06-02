@@ -68,7 +68,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           <li>
             currently hacking on a jetson orin nano — a self-contained edge node that counts cars on
             the bay bridge in real time. mostly a project to manage power draw and thermal throttling
-            with AI.
+            with AI from my apartment.
           </li>
           <li>x is a good time: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
