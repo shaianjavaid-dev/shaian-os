@@ -56,10 +56,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             shipped virtual care &amp; fintech @ <span className="italic">rally health</span>{" "}
             [acquired by UHC-optum].
           </li>
-          <li>
-            started in engineering @ <span className="italic">stripe</span> and{" "}
-            <span className="italic">gener8 ads</span> in london.
-          </li>
+          <li>worked as a SWE at various startups before that.</li>
         </ul>
 
         <p className="mt-9">elsewhere:</p>
