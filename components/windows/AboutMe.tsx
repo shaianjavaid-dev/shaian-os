@@ -72,7 +72,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         </ul>
 
         <p className="mt-9">
-          easiest way to reach me is {ext(PROFILE.links.email, PROFILE.email)}. i answer most emails.
+          easiest way to reach me is {ext(PROFILE.links.email, "shaianjavaid at gmail.com")}. i answer most emails.
           go click around. launch something.
         </p>
       </div>
