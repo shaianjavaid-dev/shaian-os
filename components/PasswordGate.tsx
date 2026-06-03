@@ -14,6 +14,8 @@ async function sha256(msg: string): Promise<string> {
 const EXPECTED_HASHES = [
   "a63422b7dbe8e2b2c95ca16f223abdceeabd96f8d2c8b558e9e0ae6de1b4c8cc",
   "a250aaaf106ed8996bc509d98c668188791705ee7a110ed9dd24ba5a2a61cb7d",
+  // share-link bypass token (used via ?key=… so personal contacts skip the password)
+  "eefd4ad9e343265db9f991a88fde3511472501eab8a6cc04ea23135eb80570a6",
 ];
 
 const SESSION_KEY = "__sos_auth";
@@ -26,9 +28,26 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const s = sessionStorage.getItem(SESSION_KEY);
-    if (s && EXPECTED_HASHES.includes(s)) setAuthed(true);
-    setChecking(false);
+    (async () => {
+      const s = sessionStorage.getItem(SESSION_KEY);
+      if (s && EXPECTED_HASHES.includes(s)) {
+        setAuthed(true);
+        setChecking(false);
+        return;
+      }
+      // personal share link: ?key=<token> auto-unlocks without showing the password
+      const key = new URLSearchParams(window.location.search).get("key");
+      if (key) {
+        const h = await sha256(key.trim());
+        if (EXPECTED_HASHES.includes(h)) {
+          sessionStorage.setItem(SESSION_KEY, h);
+          setAuthed(true);
+          setChecking(false);
+          return;
+        }
+      }
+      setChecking(false);
+    })();
   }, []);
 
   useEffect(() => {
