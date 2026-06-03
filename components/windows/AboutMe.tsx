@@ -21,6 +21,13 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
     </a>
   );
 
+  // underlined, not orange — for company mentions
+  const extu = (href: string, label: string) => (
+    <a href={href} target="_blank" rel="noreferrer" className="underline">
+      {label}
+    </a>
+  );
+
   return (
     <div className="min-h-full bg-black px-10 py-12 font-mono text-[13px] leading-[1.7] text-[#e6e6e6] selection:bg-white/20">
       <div className="max-w-[680px]">
@@ -36,7 +43,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             — headless HIPAA-compliant AI for enterprise healthcare. autonomously responds inside the
             EHR, cuts admin work ~40%.
             <p className="mt-4">
-              co-designed with midi health [1M+ lives, $1B+ valuation] across 100K+ secure patient
+              co-designed with {extu("https://www.joinmidi.com", "midi health")} [1M+ lives, $1B+ valuation] across 100K+ secure patient
               messages. term sheet from jason calacanis&apos;s LAUNCH fund.
             </p>
           </li>
@@ -49,11 +56,11 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p className="mt-9">previously:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
           <li>
-            technical PM @ <span className="italic">optum</span> — founded the AI voice scheduling
+            technical PM @ {extu("https://www.optum.com", "optum")} — founded the AI voice scheduling
             platform, ran NEMT rideshare [100K+ rides/month, 10 states].
           </li>
           <li>
-            shipped virtual care &amp; fintech @ <span className="italic">rally health</span>{" "}
+            shipped virtual care &amp; fintech @ {extu("https://www.rallyhealth.com", "rally health")}{" "}
             [acquired by UHC-optum].
           </li>
           <li>worked as a SWE at various startups before that.</li>
