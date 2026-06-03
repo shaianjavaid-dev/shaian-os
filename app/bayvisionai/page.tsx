@@ -121,7 +121,6 @@ export default function BayVisionPage() {
             <div className="row"><span>🚗 Cars</span><span className="num">{n(d?.classes?.car)}</span></div>
             <div className="row"><span>🚚 Trucks</span><span className="num">{n(d?.classes?.truck)}</span></div>
             <div className="row"><span>🚌 Buses</span><span className="num">{n(d?.classes?.bus)}</span></div>
-            <div className="row"><span>🏍️ Motorcycles</span><span className="num">{n(d?.classes?.motorcycle)}</span></div>
           </div>
 
           <div className="card">
