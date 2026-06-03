@@ -4,7 +4,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
   const link = (url: string, name: string, label: string) => (
     <button
       onClick={() => onLaunch(url, name)}
-      className="underline underline-offset-2 hover:text-accent"
+      className="text-accent"
     >
       {label}
     </button>
@@ -15,7 +15,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="underline underline-offset-2 hover:text-accent"
+      className="text-accent"
     >
       {label}
     </a>
