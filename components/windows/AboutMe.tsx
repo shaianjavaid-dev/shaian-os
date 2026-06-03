@@ -63,8 +63,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
           <li>lifelong swimmer — just swam from alcatraz recently.</li>
           <li>
-            Hacking on an NVIDIA Jetson Orin — a fully self-contained edge node that counts cars on
-            the Bay Bridge in real time from my apartment. mostly a{" "}
+            hacking on an nvidia jetson orin — a fully self-contained edge node that counts cars on
+            the bay bridge in real time from my apartment. mostly a{" "}
             {ext("https://www.shaianjavaid.com/bayvisionai", "weekend project")} to mess around with
             power draw and thermal throttling.
           </li>
