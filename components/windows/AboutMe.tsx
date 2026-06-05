@@ -34,7 +34,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p>
           hey, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
-          francisco and spend most of my hours building AI products.
+          francisco and spend a lot of my time building hardware &amp; software AI
+          products.
         </p>
 
         <ul className="mt-7 list-disc space-y-5 pl-5 marker:text-[#e6e6e6]">
@@ -68,7 +69,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
 
         <p className="mt-9">elsewhere:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
-          <li>lifelong swimmer — just swam from alcatraz recently.</li>
+          <li>lifelong swimmer — completed an alcatraz swim recently.</li>
           <li>
             hacking on an nvidia jetson orin — a fully self-contained edge node that counts cars on
             the bay bridge in real time from my apartment. mostly a{" "}
