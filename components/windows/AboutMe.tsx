@@ -34,8 +34,9 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p>
           hey, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
-          francisco and spend a lot of my time building hardware &amp; software AI
-          products.
+          francisco and spend a lot of my time building{" "}
+          {ext("https://www.shaianjavaid.com/bayvisionai", "hardware")}{" "}&amp; software
+          AI products.
         </p>
 
         <ul className="mt-7 list-disc space-y-5 pl-5 marker:text-[#e6e6e6]">
@@ -44,8 +45,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             — headless HIPAA-compliant AI for enterprise healthcare. autonomously responds inside the
             EHR, cuts admin work ~40%.
             <p className="mt-4">
-              co-designed with {extu("https://www.joinmidi.com", "midi health")} [1M+ lives, $1B+ valuation] across 100K+ secure patient
-              messages. term sheet from jason calacanis&apos;s LAUNCH fund.
+              co-designed with {extu("https://www.joinmidi.com", "midi health")}{" "}[1M+ lives, $1B+ valuation] across 100K+ secure patient
+              messages. received funding term sheets from jason calacanis&apos;s LAUNCH fund.
             </p>
           </li>
           <li>
