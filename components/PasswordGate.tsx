@@ -16,6 +16,8 @@ const EXPECTED_HASHES = [
   "a250aaaf106ed8996bc509d98c668188791705ee7a110ed9dd24ba5a2a61cb7d",
   // share-link bypass token (used via ?key=… so personal contacts skip the password)
   "eefd4ad9e343265db9f991a88fde3511472501eab8a6cc04ea23135eb80570a6",
+  // "resume1" share token
+  "1f77019574826d4964f8830385ab96e99f53f9a5d27e952c611208e852b9216c",
 ];
 
 const SESSION_KEY = "__sos_auth";
