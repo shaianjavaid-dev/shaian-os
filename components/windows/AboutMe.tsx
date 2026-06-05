@@ -51,7 +51,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           </li>
           <li>
             on the side, {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — AI that
-            fights fraud in grants handed out by the department of energy.
+            fights fraud in grants handed out by the department of energy through processing
+            deepfakes and satellite imagery.
           </li>
         </ul>
 
@@ -72,10 +73,9 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
           <li>lifelong swimmer — completed an alcatraz swim recently.</li>
           <li>
-            hacking on an nvidia jetson orin — a fully self-contained edge node that counts cars on
-            the bay bridge in real time from my apartment. mostly a{" "}
-            {ext("https://www.shaianjavaid.com/bayvisionai", "weekend project")} to mess around with
-            power draw and thermal throttling.
+            built a 24/7 computer-vision system on nvidia jetson edge hardware (YOLOv8 +
+            ByteTrack) that counts bay bridge traffic in real time from my apartment window,{" "}
+            {ext("https://www.shaianjavaid.com/bayvisionai", "streaming live to the public web")}.
           </li>
           <li>x is a good time: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
