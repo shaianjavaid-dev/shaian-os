@@ -22,6 +22,24 @@ const EXPECTED_HASHES = [
 
 const SESSION_KEY = "__sos_auth";
 
+// Safari (Private Browsing / strict privacy / Lockdown Mode) throws on storage
+// access. Swallow it so the gate degrades to the password prompt instead of
+// hanging blank; auth still works for the session via React state.
+function safeSessionGet(k: string): string | null {
+  try {
+    return sessionStorage.getItem(k);
+  } catch {
+    return null;
+  }
+}
+function safeSessionSet(k: string, v: string): void {
+  try {
+    sessionStorage.setItem(k, v);
+  } catch {
+    /* non-persistent fallback: session stays authed via component state */
+  }
+}
+
 export default function PasswordGate({ children }: { children: React.ReactNode }) {
   const [authed, setAuthed] = useState(false);
   const [checking, setChecking] = useState(true);
@@ -31,24 +49,28 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     (async () => {
-      const s = sessionStorage.getItem(SESSION_KEY);
-      if (s && EXPECTED_HASHES.includes(s)) {
-        setAuthed(true);
-        setChecking(false);
-        return;
-      }
-      // personal share link: ?key=<token> auto-unlocks without showing the password
-      const key = new URLSearchParams(window.location.search).get("key");
-      if (key) {
-        const h = await sha256(key.trim());
-        if (EXPECTED_HASHES.includes(h)) {
-          sessionStorage.setItem(SESSION_KEY, h);
+      try {
+        const s = safeSessionGet(SESSION_KEY);
+        if (s && EXPECTED_HASHES.includes(s)) {
           setAuthed(true);
-          setChecking(false);
           return;
         }
+        // personal share link: ?key=<token> auto-unlocks without showing the password
+        const key = new URLSearchParams(window.location.search).get("key");
+        if (key) {
+          const h = await sha256(key.trim());
+          if (EXPECTED_HASHES.includes(h)) {
+            safeSessionSet(SESSION_KEY, h);
+            setAuthed(true);
+            return;
+          }
+        }
+      } finally {
+        // Always resolve the gate. Safari (Private Browsing / "Block all cookies" /
+        // Lockdown Mode) throws SecurityError on sessionStorage access; without this
+        // the effect aborts before clearing `checking` and the app renders blank.
+        setChecking(false);
       }
-      setChecking(false);
     })();
   }, []);
 
@@ -61,7 +83,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
     if (!input.trim()) return;
     const hash = await sha256(input.trim());
     if (EXPECTED_HASHES.includes(hash)) {
-      sessionStorage.setItem(SESSION_KEY, hash);
+      safeSessionSet(SESSION_KEY, hash);
       setAuthed(true);
     } else {
       setError(true);

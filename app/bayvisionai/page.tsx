@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// The relay (separate always-on Render service the Jetson pushes to). Set this
+// The relay (separate always-on Render service the Jetson pushes to). Override
 // in the build env: NEXT_PUBLIC_BAYVISION_URL=https://<your-relay>.onrender.com
-const BASE = process.env.NEXT_PUBLIC_BAYVISION_URL || "";
+// Falls back to the known relay so a missing build-time env var can't black out
+// the stream (an empty BASE points <img>/fetch at the static host, which 404s).
+const BASE =
+  process.env.NEXT_PUBLIC_BAYVISION_URL || "https://bayvision-render.onrender.com";
 
 type Stats = {
   total?: number;
@@ -28,6 +31,36 @@ const n = (v?: number) => (v == null ? "—" : v.toLocaleString());
 export default function BayVisionPage() {
   const [d, setD] = useState<Stats | null>(null);
   const [reachable, setReachable] = useState(true);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Stream via single-frame polling instead of an MJPEG <img>. Safari does not
+  // render multipart/x-mixed-replace in <img> (stats still work since they're
+  // plain JSON), so the video silently failed there. Chained onload prevents
+  // request pile-up; the cache-buster defeats caching. Works in all browsers.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img || !BASE) return;
+    let alive = true;
+    let timer: ReturnType<typeof setTimeout>;
+    const next = () => {
+      if (alive) img.src = `${BASE}/frame?t=${Date.now()}`;
+    };
+    const onload = () => {
+      if (alive) timer = setTimeout(next, 110); // ~9 fps
+    };
+    const onerror = () => {
+      if (alive) timer = setTimeout(next, 800);
+    };
+    img.addEventListener("load", onload);
+    img.addEventListener("error", onerror);
+    next();
+    return () => {
+      alive = false;
+      clearTimeout(timer);
+      img.removeEventListener("load", onload);
+      img.removeEventListener("error", onerror);
+    };
+  }, []);
 
   useEffect(() => {
     if (!BASE) return;
@@ -98,7 +131,7 @@ export default function BayVisionPage() {
       <main>
         <div className="stream">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${BASE}/video`} alt="Live stream" />
+          <img ref={imgRef} alt="Live stream" />
           {!online && <div className="offline">Stream offline — the Jetson isn&apos;t pushing right now.</div>}
         </div>
 
