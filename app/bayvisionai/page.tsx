@@ -24,6 +24,7 @@ type Stats = {
   uptime_seconds?: number;
   server_time?: string;
   online?: boolean;
+  online2?: boolean; // legacy HD cam (visual-only second feed)
 };
 
 const n = (v?: number) => (v == null ? "—" : v.toLocaleString());
@@ -32,6 +33,7 @@ export default function BayVisionPage() {
   const [d, setD] = useState<Stats | null>(null);
   const [reachable, setReachable] = useState(true);
   const imgRef = useRef<HTMLImageElement>(null);
+  const imgRef2 = useRef<HTMLImageElement>(null); // legacy HD cam (visual-only)
 
   // Stream via single-frame polling instead of an MJPEG <img>. Safari does not
   // render multipart/x-mixed-replace in <img> (stats still work since they're
@@ -50,6 +52,32 @@ export default function BayVisionPage() {
     };
     const onerror = () => {
       if (alive) timer = setTimeout(next, 800);
+    };
+    img.addEventListener("load", onload);
+    img.addEventListener("error", onerror);
+    next();
+    return () => {
+      alive = false;
+      clearTimeout(timer);
+      img.removeEventListener("load", onload);
+      img.removeEventListener("error", onerror);
+    };
+  }, []);
+
+  // Secondary feed (legacy HD cam) — same frame-polling trick against /frame2.
+  useEffect(() => {
+    const img = imgRef2.current;
+    if (!img || !BASE) return;
+    let alive = true;
+    let timer: ReturnType<typeof setTimeout>;
+    const next = () => {
+      if (alive) img.src = `${BASE}/frame2?t=${Date.now()}`;
+    };
+    const onload = () => {
+      if (alive) timer = setTimeout(next, 130); // ~7.5 fps, matches the push rate
+    };
+    const onerror = () => {
+      if (alive) timer = setTimeout(next, 900);
     };
     img.addEventListener("load", onload);
     img.addEventListener("error", onerror);
@@ -86,6 +114,7 @@ export default function BayVisionPage() {
   }, []);
 
   const online = !!d?.online && reachable;
+  const online2 = !!d?.online2 && reachable;
   const uptime = (() => {
     const s = d?.uptime_seconds;
     if (s == null) return "—";
@@ -129,10 +158,22 @@ export default function BayVisionPage() {
       </header>
 
       <main>
-        <div className="stream">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img ref={imgRef} alt="Live stream" />
-          {!online && <div className="offline">Stream offline — the Jetson isn&apos;t pushing right now.</div>}
+        <div className="left">
+          <div className="stream">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img ref={imgRef} alt="Live stream" />
+            {!online && <div className="offline">Stream offline — the Jetson isn&apos;t pushing right now.</div>}
+          </div>
+
+          <div className="stream2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img ref={imgRef2} alt="Legacy HD camera" />
+            <div className="cam-label">
+              <span className={`dot sm ${online2 ? "" : "off"}`} />
+              Legacy HD cam · visual only
+            </div>
+            {!online2 && <div className="offline sm">Legacy cam offline</div>}
+          </div>
         </div>
 
         <div className="panel">
@@ -194,9 +235,15 @@ const styles = `
   .meta { font-size:11px; color:var(--muted); text-align:right; }
   .clock { color:var(--green); font-variant-numeric:tabular-nums; }
   main { display:grid; grid-template-columns:1fr 320px; gap:16px; padding:16px 28px 28px; }
+  .left { display:flex; flex-direction:column; gap:16px; min-width:0; }
   .stream { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px; position:relative; }
   .stream img { width:100%; height:auto; display:block; border-radius:6px; }
+  .stream2 { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px; position:relative; align-self:flex-start; max-width:360px; width:100%; }
+  .stream2 img { width:100%; height:auto; display:block; border-radius:6px; background:#0b0e14; min-height:120px; }
+  .cam-label { display:flex; align-items:center; font-size:11px; color:var(--muted); margin-top:8px; }
+  .dot.sm { width:6px; height:6px; margin-right:5px; }
   .offline { position:absolute; inset:10px; display:flex; align-items:center; justify-content:center; background:rgba(11,14,20,.85); border-radius:6px; color:var(--muted); font-size:14px; }
+  .offline.sm { font-size:12px; bottom:34px; }
   .panel { display:flex; flex-direction:column; gap:12px; }
   .card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
   .card-title { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; }
