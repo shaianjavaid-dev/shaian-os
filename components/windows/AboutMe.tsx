@@ -35,7 +35,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           hey, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
           francisco and spend a lot of my time building{" "}
-          {ext("https://www.shaianjavaid.com/bayvisionai", "hardware")}{" "}&amp; software
+          hardware{" "}&amp; software
           AI products.
         </p>
 
@@ -72,11 +72,6 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p className="mt-9">elsewhere:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
           <li>lifelong swimmer — completed an alcatraz swim recently.</li>
-          <li>
-            built a 24/7 computer-vision system on nvidia jetson edge hardware (YOLOv8 +
-            ByteTrack) that counts bay bridge traffic in real time from my apartment window,{" "}
-            {ext("https://www.shaianjavaid.com/bayvisionai", "streaming live to the public web")}.
-          </li>
           <li>x is a good time: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
         </ul>
