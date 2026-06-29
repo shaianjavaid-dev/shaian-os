@@ -40,7 +40,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
 
         <ul className="mt-7 list-disc space-y-5 pl-5 marker:text-[#e6e6e6]">
           <li>
-            co-founder &amp; ceo @ {link("https://www.loomhealth.ai", "Loom Health", "loom health")}{" "}
+            co-founder and chief AI officer for {link("https://www.loomhealth.ai", "Loom Health", "loom health")}{" "}
             — headless HIPAA-compliant AI for enterprise healthcare. autonomously responds inside the
             EHR, cuts admin work ~40%.
             <p className="mt-4">
