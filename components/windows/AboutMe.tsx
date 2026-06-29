@@ -32,10 +32,9 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
     <div className="min-h-full bg-black px-10 py-12 font-mono text-[13px] leading-[1.7] text-[#e6e6e6] selection:bg-white/20">
       <div className="max-w-[680px]">
         <p>
-          hey, world. i&apos;m shaian (pronounced{" "}
+          hi, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
-          francisco and spend a lot of my time building{" "}
-          hardware{" "}&amp; software
+          francisco and spend a lot of my time building software
           AI products.
         </p>
 
@@ -78,7 +77,6 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
 
         <p className="mt-9">
           easiest way to reach me is {ext(PROFILE.links.email, "shaianjavaid at gmail.com")}. i answer most emails.
-          go click around. launch something.
         </p>
       </div>
     </div>
