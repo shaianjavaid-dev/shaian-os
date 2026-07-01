@@ -44,18 +44,23 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             — headless HIPAA-compliant AI for enterprise healthcare. autonomously responds inside the
             EHR, cuts admin work ~40%.
             <p className="mt-4">
-              co-designed with {extu("https://www.joinmidi.com", "midi health")}{" "}[1M+ lives, $1B+ valuation] across 100K+ secure patient
+              co-designed with {extu("https://www.joinmidi.com", "midi health")}{" "}across 100K+ secure patient
               messages. received funding term sheets from jason calacanis&apos;s LAUNCH fund.
             </p>
           </li>
           <li>
-            on the side, {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — AI that
-            fights fraud in grants handed out by the department of energy through processing
-            deepfakes and satellite imagery.
+            {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — a forward-deployed OCR
+            platform embedded inside some of the largest incentive processors, detecting financial fraud in
+            department of energy rebate subsidies. actively processes nearly ~4,000 documents a month.
           </li>
           <li>
-            and for fun, to change up the pace from B2B — bananatab. a textable agent
+            and for fun, to change up the pace from B2B —{" "}
+            {link("https://www.bananatab.com", "BananaTab", "bananatab")}. a textable agent
             that earns you points on venmo requests.
+          </li>
+          <li>
+            {ext("https://www.shaianjavaid.com/bayvisionai", "hardware tinkering")} — counting every car
+            that comes into the city with a vision model running locally on an nvidia jetson nano.
           </li>
         </ul>
 
