@@ -35,7 +35,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           hi, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
           francisco and spend a lot of my time building software
-          AI products.
+          AI products, and in my free time, hardware products.
         </p>
 
         <ul className="mt-7 list-disc space-y-5 pl-5 marker:text-[#e6e6e6]">
@@ -52,6 +52,10 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             on the side, {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — AI that
             fights fraud in grants handed out by the department of energy through processing
             deepfakes and satellite imagery.
+          </li>
+          <li>
+            and for fun, to change up the pace from B2B — bananatab. a textable agent
+            that earns you points on venmo requests.
           </li>
         </ul>
 
