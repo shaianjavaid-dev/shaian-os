@@ -35,11 +35,17 @@ export default function BayVisionPage() {
   const imgRef = useRef<HTMLImageElement>(null);
   const imgRef2 = useRef<HTMLImageElement>(null); // legacy HD cam (visual-only)
 
+  const online = !!d?.online && reachable;
+  const online2 = !!d?.online2 && reachable;
+
   // Stream via single-frame polling instead of an MJPEG <img>. Safari does not
   // render multipart/x-mixed-replace in <img> (stats still work since they're
   // plain JSON), so the video silently failed there. Chained onload prevents
   // request pile-up; the cache-buster defeats caching. Works in all browsers.
   useEffect(() => {
+    // Only the live <img> is mounted while online; when offline we show the
+    // static capture instead, so re-run this when `online` flips to (re)attach.
+    if (!online) return;
     const img = imgRef.current;
     if (!img || !BASE) return;
     let alive = true;
@@ -62,7 +68,7 @@ export default function BayVisionPage() {
       img.removeEventListener("load", onload);
       img.removeEventListener("error", onerror);
     };
-  }, []);
+  }, [online]);
 
   // Secondary feed (legacy HD cam) — same frame-polling trick against /frame2.
   useEffect(() => {
@@ -113,8 +119,6 @@ export default function BayVisionPage() {
     };
   }, []);
 
-  const online = !!d?.online && reachable;
-  const online2 = !!d?.online2 && reachable;
   const uptime = (() => {
     const s = d?.uptime_seconds;
     if (s == null) return "—";
@@ -160,9 +164,16 @@ export default function BayVisionPage() {
       <main>
         <div className="left">
           <div className="stream">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img ref={imgRef} alt="Live stream" />
-            {!online && <div className="offline">Stream offline — the Jetson isn&apos;t pushing right now.</div>}
+            {/* Live frames when the Jetson is pushing; a static YOLOv8s capture
+                when the feed is offline so the panel is never just an empty box. */}
+            {online ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img ref={imgRef} alt="Live stream" />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src="/proof/bayvision-offline.jpg" alt="Last BayVision capture — vehicles detected by YOLOv8s" />
+            )}
+            {!online && <div className="offline-tag">Stream offline — showing the last captured frame</div>}
           </div>
 
           <div className="stream2">
@@ -243,6 +254,7 @@ const styles = `
   .cam-label { display:flex; align-items:center; font-size:11px; color:var(--muted); margin-top:8px; }
   .dot.sm { width:6px; height:6px; margin-right:5px; }
   .offline { position:absolute; inset:10px; display:flex; align-items:center; justify-content:center; background:rgba(11,14,20,.85); border-radius:6px; color:var(--muted); font-size:14px; }
+  .offline-tag { position:absolute; left:18px; bottom:18px; background:rgba(11,14,20,.82); border:1px solid var(--border); border-radius:20px; padding:4px 12px; font-size:12px; color:var(--red); }
   .offline.sm { font-size:12px; bottom:34px; }
   .panel { display:flex; flex-direction:column; gap:12px; }
   .card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
