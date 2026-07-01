@@ -56,7 +56,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           <li>
             and for fun, to change up the pace from B2B —{" "}
             {link("https://www.bananatab.com", "BananaTab", "bananatab")}. a textable agent
-            that earns you points on venmo requests.
+            that earns you points on venmo requests. an experiment in building something fun
+            that carries its own exponential distribution loop.
           </li>
           <li>
             {ext("https://www.shaianjavaid.com/bayvisionai", "hardware tinkering")} — counting every car
