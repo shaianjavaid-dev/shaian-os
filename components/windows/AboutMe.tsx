@@ -53,6 +53,13 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             catching financial fraud in department of energy rebate subsidies. processes thousands of documents a week.
           </li>
           <li>
+            {link("https://www.box-intelligence.com", "Box Intelligence", "box intelligence")} — AI customer
+            service systems and enterprise chat harnesses. private retrieval over a company&apos;s own helpdesk,
+            billing, CRM, and documents — permission-aware, answers with citations, and says so when the source
+            doesn&apos;t support an answer. zero data retention, model-agnostic, deployed inside the customer&apos;s
+            own cloud.
+          </li>
+          <li>
             and for some consumer action —{" "}
             {link("https://www.bananatab.com", "BananaTab", "bananatab")}. an iMessage-based fintech product
             for personal accounting, powered by a forecasting engine that models income, bills, spending, and
