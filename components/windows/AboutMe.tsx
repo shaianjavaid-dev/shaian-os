@@ -34,8 +34,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p>
           hi, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
-          francisco and spend most of my time building AI products — software by day,
-          hardware in my free time.
+          francisco and spend most of my time building software &amp; hardware products.
         </p>
 
         <ul className="mt-7 list-disc space-y-5 pl-5 marker:text-[#e6e6e6]">
@@ -49,20 +48,21 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             </p>
           </li>
           <li>
-            {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — a forward-deployed OCR
-            platform embedded inside some of the largest incentive processors, detecting financial fraud in
-            department of energy rebate subsidies. processes ~4,000 documents a month.
+            {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — started as OCR, now an
+            extreme low-latency AI detection API embedded inside some of the largest incentive processors,
+            catching financial fraud in department of energy rebate subsidies. processes ~4,000 documents a month.
           </li>
           <li>
-            and for fun, to change up the pace from B2B —{" "}
-            {link("https://www.bananatab.com", "BananaTab", "bananatab")}. a textable agent
-            that earns you points on venmo requests. an experiment in building something fun
-            that carries its own exponential distribution loop.
+            and for some consumer action —{" "}
+            {link("https://www.bananatab.com", "BananaTab", "bananatab")}. an iMessage-based fintech product
+            for personal accounting, powered by a forecasting engine that models income, bills, spending, and
+            shared expenses to project cash flow and spending capacity with uncertainty ranges. bananatab also
+            runs on its own AI-generated content marketing engine.
           </li>
           <li>
-            {ext("https://www.shaianjavaid.com/bayvisionai", "hardware tinkering")} — counting every car
-            that crosses the bay bridge, 24/7, with a vision model running locally on an nvidia jetson
-            orin nano in my window.
+            {ext("https://shaianjavaid.com/bayvisionai", "hardware tinkering")} — a custom vision model
+            sitting on top of a locally running nvidia jetson nano, pointed out my apartment window, counting
+            cars. a project in thermal throttling, detection accuracy, and physical hardware.
           </li>
         </ul>
 
