@@ -28,10 +28,11 @@ if (!fromEnv) {
     process.exit(1);
   }
 }
-if (pw.length < 12) {
-  console.error("use at least 12 characters");
+if (pw.length < 6) {
+  console.error("use at least 6 characters");
   process.exit(1);
 }
+if (pw.length < 12) console.error("warning: short password — online guessing is bounded by the lockout, but longer is safer");
 const salt = crypto.randomBytes(16);
 const key = crypto.scryptSync(pw, salt, 64, { N, r: 8, p: 1, maxmem: 256 * 1024 * 1024 });
 console.log(`scrypt$${N}$${salt.toString("hex")}$${key.toString("hex")}`);
