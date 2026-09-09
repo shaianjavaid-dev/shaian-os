@@ -1,0 +1,24 @@
+# Blueprint for the password-gated site. The old `shaian-os` static site cannot
+# be converted in place (Render service types are fixed), so this is a new
+# web service; move the custom domains over after the first deploy.
+services:
+  - type: web
+    name: shaian-os-gate
+    runtime: node
+    plan: starter
+    region: oregon
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: node server.mjs
+    healthCheckPath: /healthz
+    envVars:
+      - key: NEXT_PUBLIC_BAYVISION_URL
+        value: https://bayvision-render.onrender.com
+      - key: SITE_PASSWORD_HASH
+        sync: false # from `npm run hash-password`
+      - key: SITE_SHARE_TOKENS
+        sync: false # optional, comma-separated, 12+ chars each
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: PUBLIC_PAGES
+        value: /bayvisionai

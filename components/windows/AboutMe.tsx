@@ -29,13 +29,13 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
   );
 
   return (
-    <div className="min-h-full bg-black px-10 py-12 font-mono text-[13px] leading-[1.7] text-[#e6e6e6] selection:bg-white/20">
+    <div className="min-h-full bg-black px-6 py-10 font-mono text-[13px] leading-[1.7] text-[#e6e6e6] selection:bg-white/20 sm:px-10 sm:py-12">
       <div className="max-w-[680px]">
         <p>
           hi, world. i&apos;m shaian (pronounced{" "}
           <span className="italic">{PROFILE.pronounce.toLowerCase()}</span>). i live in san
-          francisco and spend a lot of my time building software
-          AI products, and in my free time, hardware products.
+          francisco and spend most of my time building AI products — software by day,
+          hardware in my free time.
         </p>
 
         <ul className="mt-7 list-disc space-y-5 pl-5 marker:text-[#e6e6e6]">
@@ -45,13 +45,13 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             autonomously responds inside the EHR, cuts admin work ~40%.
             <p className="mt-4">
               co-designed with {extu("https://www.joinmidi.com", "midi health")}{" "}across 100K+ secure patient
-              messages. received funding term sheets from jason calacanis&apos;s LAUNCH fund.
+              messages. received funding term sheets from Jason Calacanis&apos;s LAUNCH fund.
             </p>
           </li>
           <li>
             {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — a forward-deployed OCR
             platform embedded inside some of the largest incentive processors, detecting financial fraud in
-            department of energy rebate subsidies. actively processes nearly ~4,000 documents a month.
+            department of energy rebate subsidies. processes ~4,000 documents a month.
           </li>
           <li>
             and for fun, to change up the pace from B2B —{" "}
@@ -61,7 +61,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           </li>
           <li>
             {ext("https://www.shaianjavaid.com/bayvisionai", "hardware tinkering")} — counting every car
-            that comes into the city with a vision model running locally on an nvidia jetson nano.
+            that crosses the bay bridge, 24/7, with a vision model running locally on an nvidia jetson
+            orin nano in my window.
           </li>
         </ul>
 
@@ -87,6 +88,10 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
 
         <p className="mt-9">
           easiest way to reach me is {ext(PROFILE.links.email, "shaianjavaid at gmail.com")}. i answer most emails.
+        </p>
+
+        <p className="mt-12 text-[11px] text-white/35">
+          private page, shared by link. please don&apos;t repost.
         </p>
       </div>
     </div>
