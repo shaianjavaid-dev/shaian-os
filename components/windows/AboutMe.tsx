@@ -75,7 +75,8 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
           <li>
             technical product manager @ {extu("https://www.optum.com", "optum")} — founded the AI voice scheduling
-            platform, ran NEMT rideshare [100K+ rides/month, 10 states].
+            platform, ran NEMT rideshare [100K+ rides/month, 10 states], built and owned the consumer-facing
+            dashboard for all unitedhealthcare members.
           </li>
           <li>
             technical product manager @ {extu("https://www.rallyhealth.com", "rally health")} — shipped virtual
