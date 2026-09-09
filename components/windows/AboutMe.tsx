@@ -50,7 +50,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           <li>
             {link("https://www.loombuilder.ai", "Loom Builder", "loom builder")} — started as OCR, now an
             extreme low-latency AI detection API embedded inside some of the largest incentive processors,
-            catching financial fraud in department of energy rebate subsidies. processes ~4,000 documents a month.
+            catching financial fraud in department of energy rebate subsidies. processes ~5,000 documents a month.
           </li>
           <li>
             and for some consumer action —{" "}
