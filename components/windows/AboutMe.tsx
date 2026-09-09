@@ -69,12 +69,12 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
         <p className="mt-9">previously:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
           <li>
-            technical PM @ {extu("https://www.optum.com", "optum")} — founded the AI voice scheduling
+            technical product manager @ {extu("https://www.optum.com", "optum")} — founded the AI voice scheduling
             platform, ran NEMT rideshare [100K+ rides/month, 10 states].
           </li>
           <li>
-            shipped virtual care &amp; fintech @ {extu("https://www.rallyhealth.com", "rally health")}{" "}
-            [acquired by UHC-optum].
+            technical product manager @ {extu("https://www.rallyhealth.com", "rally health")} — shipped virtual
+            care &amp; fintech [acquired by UHC-optum].
           </li>
           <li>worked as a SWE at various startups before that.</li>
         </ul>
