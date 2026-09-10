@@ -64,9 +64,10 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           </li>
           <li>
             and for some consumer finance action —{" "}
-            {link("https://www.bananatab.com", "BananaTab", "bananatab")}. an iMessage-based fintech product
-            for personal accounting, powered by a forecasting engine that models income, bills, live spending, and
-            shared expenses to project cash flow and spending capacity.
+            {link("https://www.bananatab.com", "BananaTab", "bananatab")}. an iMessage spending assistant that
+            connects to your bank accounts and credit cards, understands how you spend, and texts you throughout
+            the month with insights and warnings before you get off track. powered by a forecasting engine and
+            secured by plaid.
           </li>
           <li>
             {ext("https://shaianjavaid.com/bayvisionai", "hardware tinkering")} — a custom vision model
