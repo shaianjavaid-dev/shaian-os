@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { PROFILE } from "@/lib/data";
+import PhotoModal from "@/components/PhotoModal";
 
 export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: string) => void }) {
+  const [photo, setPhoto] = useState(false);
   const link = (url: string, name: string, label: string) => (
     <button
       onClick={() => onLaunch(url, name)}
@@ -86,7 +91,13 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
 
         <p className="mt-9">elsewhere:</p>
         <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-[#e6e6e6]">
-          <li>lifelong swimmer — completed an alcatraz swim recently.</li>
+          <li>
+            lifelong swimmer — completed an{" "}
+            <button onClick={() => setPhoto(true)} className="text-accent">
+              alcatraz swim
+            </button>{" "}
+            recently.
+          </li>
           <li>x is a good time: {ext(PROFILE.links.x, "@shaian_javaid")}.</li>
           <li>linkedin if you must: {ext(PROFILE.links.linkedin, "/in/shaian-javaid")}.</li>
         </ul>
@@ -99,6 +110,14 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           private page, shared by link. please don&apos;t repost.
         </p>
       </div>
+      {photo && (
+        <PhotoModal
+          src="/alcatraz-swim.jpg"
+          alt="Shaian swimming in the bay with Alcatraz behind"
+          caption="alcatraz swim, san francisco bay"
+          onClose={() => setPhoto(false)}
+        />
+      )}
     </div>
   );
 }
