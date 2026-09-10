@@ -61,8 +61,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             and for some consumer finance action —{" "}
             {link("https://www.bananatab.com", "BananaTab", "bananatab")}. an iMessage-based fintech product
             for personal accounting, powered by a forecasting engine that models income, bills, spending, and
-            shared expenses to project cash flow and spending capacity with uncertainty ranges. bananatab also
-            runs on its own AI-generated content marketing engine.
+            shared expenses to project cash flow and spending capacity.
           </li>
           <li>
             {ext("https://shaianjavaid.com/bayvisionai", "hardware tinkering")} — a custom vision model
