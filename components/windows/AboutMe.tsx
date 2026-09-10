@@ -60,7 +60,7 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
           <li>
             {link("https://www.box-intelligence.com", "Box Intelligence", "box intelligence")} — a forward-deployed
             AI consulting shop focused on sovereign AI and AI intranet tooling, embedded within american energy
-            companies. box plans to fully hand off its product at the end of its consulting term.
+            companies.
           </li>
           <li>
             and for some consumer finance action —{" "}
