@@ -58,18 +58,6 @@ export default function AboutMe({ onLaunch }: { onLaunch: (url: string, name: st
             catching financial fraud in department of energy rebate subsidies. processes thousands of documents a week.
           </li>
           <li>
-            {link("https://www.box-intelligence.com", "Box Intelligence", "box intelligence")} — a forward-deployed
-            AI consulting shop focused on sovereign AI and AI intranet tooling, embedded within american energy
-            companies.
-          </li>
-          <li>
-            and for some consumer finance action —{" "}
-            {link("https://www.bananatab.com", "BananaTab", "bananatab")}. an iMessage spending assistant that
-            connects to your bank accounts and credit cards, understands how you spend, and texts you throughout
-            the month with insights and warnings before you get off track. powered by a forecasting engine and
-            secured by plaid.
-          </li>
-          <li>
             {ext("https://shaianjavaid.com/bayvisionai", "hardware tinkering")} — a custom vision model
             sitting on top of a locally running nvidia jetson nano, pointed out my apartment window, counting
             cars. a project in thermal throttling, detection accuracy, and physical hardware.
